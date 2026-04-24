@@ -53,7 +53,7 @@ const featuredProjects = [
     badgeColor: "#34d399",
     terminalCmd: "npm run build && vercel deploy --prod",
     accentColor: "#818cf8",
-    image: "/projects/Screenshot 2026-04-25 at 12.56.53 AM.png",
+    image: "/projects/craftchain-screenshot.png",
   },
 ];
 
@@ -202,13 +202,24 @@ const FeaturedCard = ({ project }) => {
 
       {/* Main content */}
       <div className="p-7 md:p-9 relative">
-        {/* Image placeholder */}
-        <div className="w-full rounded-xl mb-7 overflow-hidden flex items-center justify-center"
-          style={{ height: "200px", background: "hsl(224 20% 4%)", border: `1px dashed ${accent}30`, position: "relative" }}>
+        {/* Screenshot */}
+        <div className="w-full rounded-xl mb-7 overflow-hidden"
+          style={{ position: "relative", background: "hsl(224 20% 4%)", border: `1px solid ${accent}20` }}>
           {project.image
-            ? <img src={project.image} alt={project.name} className="w-full h-full object-cover" />
+            ? (
+              <div style={{ position: "relative" }}>
+                <img
+                  src={project.image}
+                  alt={project.name}
+                  style={{ width: "100%", height: "auto", display: "block", maxHeight: "420px", objectFit: "cover", objectPosition: "top" }}
+                />
+                <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to bottom, transparent 55%, hsl(224 18% 7%))`, pointerEvents: "none" }} />
+                <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to right, ${accent}08, transparent 40%)`, pointerEvents: "none" }} />
+              </div>
+            )
             : (
-              <div className="flex flex-col items-center gap-2 select-none" style={{ color: accent + "40" }}>
+              <div className="flex flex-col items-center justify-center gap-2 select-none"
+                style={{ height: "240px", color: accent + "40", border: `1px dashed ${accent}25` }}>
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <rect x="3" y="3" width="18" height="18" rx="2" />
                   <circle cx="8.5" cy="8.5" r="1.5" />
@@ -219,7 +230,6 @@ const FeaturedCard = ({ project }) => {
                 </span>
               </div>
             )}
-          <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to bottom, transparent 60%, hsl(224 18% 7%))`, pointerEvents: "none" }} />
         </div>
 
         <h3 className="text-xl font-bold mb-1" style={{ color: "hsl(var(--foreground))" }}>{project.name}</h3>
