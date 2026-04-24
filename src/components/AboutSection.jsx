@@ -1,41 +1,36 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { Trophy, Zap, Users, GraduationCap } from "lucide-react";
 
 const stats = [
-  { value: "3+",    label: "Industry Roles" },
-  { value: "2×",    label: "Hackathon Winner" },
-  { value: "600k+", label: "Records Processed" },
-  { value: "60%",   label: "Pipeline Time Cut" },
+  { value: "3+",    label: "Industry Roles",      icon: "💼" },
+  { value: "2×",    label: "Hackathon Winner",    icon: "🏆" },
+  { value: "600k+", label: "Records Processed",   icon: "⚡" },
+  { value: "60%",   label: "Pipeline Time Cut",   icon: "📉" },
 ];
 
-const highlights = [
+const cards = [
   {
-    icon: Zap,
     title: "Backend & AI Systems",
     body: "Multi-tenant REST APIs with RBAC, RAG pipelines, Redis/Celery microservices. FastAPI and PostgreSQL are daily tools.",
-    color: "text-yellow-400",
-    bg: "bg-yellow-400/8",
+    icon: "⚙️",
+    accent: "#60a5fa",
   },
   {
-    icon: Trophy,
     title: "Hackathon Track Record",
-    body: "1st at IDEAVERSE'26 with ReRoute.AI. 2nd at Neural Nexus with a multi-modal mental health platform.",
-    color: "text-amber-400",
-    bg: "bg-amber-400/8",
+    body: "1st at IDEAVERSE'26 with ReRoute.AI. 2nd at Neural Nexus with a multi-modal mental health platform. I build fast and ship.",
+    icon: "🏆",
+    accent: "#fbbf24",
   },
   {
-    icon: GraduationCap,
     title: "IIIT Sri City · 2027",
-    body: "BTech in AI & Data Science. JEE Advanced qualified. Building real systems since year 2.",
-    color: "text-blue-400",
-    bg: "bg-blue-400/8",
+    body: "BTech AI & Data Science. JEE Advanced qualified. Building production systems since year 2.",
+    icon: "🎓",
+    accent: "#818cf8",
   },
   {
-    icon: Users,
     title: "Community",
-    body: "Core member at TEDxIIITSriCity, GDG, and Matrix. Learning in public.",
-    color: "text-purple-400",
-    bg: "bg-purple-400/8",
+    body: "Core member at TEDxIIITSriCity, GDG, and Matrix. Learning in public, building with others.",
+    icon: "🤝",
+    accent: "#34d399",
   },
 ];
 
@@ -47,20 +42,33 @@ export const AboutSection = () => {
       <div className="container max-w-4xl">
 
         <div className="reveal">
-          <p className="section-label mb-4">
-            <span className="w-8 h-px bg-[hsl(var(--primary))] inline-block" />
-            About
-          </p>
-          <h2 className="section-heading mb-6 max-w-lg">
-            Builder by instinct,<br />engineer by training.
+          <div
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono mb-6"
+            style={{ background: "hsl(217 91% 60% / 0.08)", border: "1px solid hsl(217 91% 60% / 0.18)", color: "#60a5fa" }}
+          >
+            <span className="w-1 h-1 rounded-full bg-[#60a5fa]" /> 01 · About
+          </div>
+          <h2
+            className="mb-7"
+            style={{
+              fontSize: "clamp(2rem, 4vw, 2.8rem)",
+              fontWeight: 800,
+              letterSpacing: "-0.035em",
+              lineHeight: 1.1,
+            }}
+          >
+            Builder by instinct,<br />
+            <span style={{ color: "hsl(215 12% 45%)" }}>engineer by training.</span>
           </h2>
-          <div className="space-y-4 text-[hsl(var(--muted-foreground))] text-[1.05rem] leading-relaxed max-w-2xl mb-14">
+          <div className="space-y-4 mb-14 max-w-2xl" style={{ color: "hsl(215 12% 50%)", fontSize: "1.05rem", lineHeight: 1.75 }}>
             <p>
-              I'm a 3rd-year BTech student in AI & Data Science at IIIT Sri City — but
-              I've been shipping real software since my second year. Fraud detection platforms
-              processing <span className="text-[hsl(var(--foreground))] font-medium">600k+ records</span>.
-              WhatsApp AI agents handling <span className="text-[hsl(var(--foreground))] font-medium">500+ leads/day</span>.
-              A cloud-native travel recovery system that <span className="text-[hsl(var(--primary))] font-medium">won a hackathon</span>.
+              I'm a 3rd-year BTech student in AI & Data Science at IIIT Sri City — but I've been
+              shipping real software since year two. Fraud detection platforms processing{" "}
+              <span style={{ color: "hsl(var(--foreground))", fontWeight: 600 }}>600k+ records</span>.
+              WhatsApp AI agents handling{" "}
+              <span style={{ color: "hsl(var(--foreground))", fontWeight: 600 }}>500+ leads/day</span>.
+              A cloud-native recovery system that{" "}
+              <span style={{ color: "#60a5fa", fontWeight: 600 }}>won first place</span>.
             </p>
             <p>
               I care about clean architecture, measurable outcomes, and code that doesn't
@@ -69,56 +77,78 @@ export const AboutSection = () => {
           </div>
         </div>
 
-        {/* Stats bar */}
-        <div className="reveal reveal-delay-1 grid grid-cols-2 md:grid-cols-4 gap-px bg-[hsl(var(--border))] rounded-2xl overflow-hidden mb-14 border border-[hsl(var(--border))]">
-          {stats.map((s) => (
-            <div key={s.label} className="bg-[hsl(var(--card))] px-6 py-6 text-center group hover:bg-[hsl(var(--muted))] transition-colors duration-200">
+        {/* Stats */}
+        <div
+          className="reveal reveal-delay-1 grid grid-cols-2 md:grid-cols-4 gap-3 mb-14"
+        >
+          {stats.map(({ value, label, icon }) => (
+            <div
+              key={label}
+              className="rounded-2xl p-5 text-center group transition-all duration-300"
+              style={{ background: "hsl(224 18% 7%)", border: "1px solid hsl(224 15% 13%)" }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = "hsl(217 91% 60% / 0.3)"; e.currentTarget.style.transform = "translateY(-3px)"; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = "hsl(224 15% 13%)"; e.currentTarget.style.transform = "translateY(0)"; }}
+            >
+              <div className="text-2xl mb-1">{icon}</div>
               <p
-                className="text-3xl font-extrabold mb-1"
+                className="text-2xl md:text-3xl font-extrabold mb-1"
                 style={{
-                  background: "linear-gradient(135deg, hsl(153 60% 60%), hsl(153 60% 45%))",
+                  background: "linear-gradient(135deg, #60a5fa, #818cf8)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
                 }}
               >
-                {s.value}
+                {value}
               </p>
-              <p className="text-xs text-[hsl(var(--muted-foreground))]">{s.label}</p>
+              <p className="text-xs" style={{ color: "hsl(215 12% 40%)", fontFamily: "'JetBrains Mono', monospace" }}>{label}</p>
             </div>
           ))}
         </div>
 
-        {/* Highlight cards */}
+        {/* Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
-          {highlights.map(({ icon: Icon, title, body, color, bg }, i) => (
+          {cards.map(({ title, body, icon, accent }, i) => (
             <div
               key={title}
-              className={`reveal reveal-delay-${i + 1} glass-card-hover p-5 hover:border-[hsl(var(--primary)/0.28)] hover:-translate-y-1 group cursor-default`}
+              className={`reveal reveal-delay-${i + 1} rounded-2xl p-6 transition-all duration-300 group`}
+              style={{ background: "hsl(224 18% 7%)", border: "1px solid hsl(224 15% 13%)" }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = accent + "44"; e.currentTarget.style.transform = "translateY(-3px)"; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = "hsl(224 15% 13%)"; e.currentTarget.style.transform = "translateY(0)"; }}
             >
-              <div className={`w-9 h-9 rounded-xl ${bg} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-200`}>
-                <Icon size={16} className={color} />
+              <div
+                className="w-10 h-10 rounded-xl flex items-center justify-center text-lg mb-4 transition-transform duration-200 group-hover:scale-110"
+                style={{ background: accent + "15", border: `1px solid ${accent}30` }}
+              >
+                {icon}
               </div>
-              <h3 className="font-semibold text-sm mb-2 text-[hsl(var(--foreground))]">{title}</h3>
-              <p className="text-[hsl(var(--muted-foreground))] text-sm leading-relaxed">{body}</p>
+              <h3 className="font-semibold text-sm mb-2" style={{ color: "hsl(var(--foreground))" }}>{title}</h3>
+              <p className="text-sm leading-relaxed" style={{ color: "hsl(215 12% 45%)" }}>{body}</p>
             </div>
           ))}
         </div>
 
-        {/* CTAs */}
         <div className="reveal reveal-delay-3 flex flex-wrap gap-3">
           <a
             href="#contact"
-            className="btn-primary hover:opacity-90 hover:-translate-y-px"
-            style={{ boxShadow: "0 0 20px hsl(153 60% 53% / 0.2)" }}
+            className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-200"
+            style={{
+              background: "hsl(var(--primary))",
+              color: "#0f172a",
+              boxShadow: "0 0 25px hsl(217 91% 60% / 0.3)",
+            }}
+            onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 0 35px hsl(217 91% 60% / 0.45)"; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 0 25px hsl(217 91% 60% / 0.3)"; }}
           >
             Get in Touch
           </a>
           <a
             href="https://drive.google.com/file/d/1XLlVNa_IsVzFjnBEApQ-hG7WUeM9L6Dd/view?usp=share_link"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-outline hover:border-[hsl(var(--primary)/0.4)] hover:text-[hsl(var(--primary))]"
+            target="_blank" rel="noopener noreferrer"
+            className="flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-sm transition-all duration-200"
+            style={{ background: "hsl(224 15% 10%)", border: "1px solid hsl(224 15% 18%)", color: "hsl(var(--foreground))" }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = "hsl(217 91% 60% / 0.4)"; e.currentTarget.style.color = "#60a5fa"; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = "hsl(224 15% 18%)"; e.currentTarget.style.color = "hsl(var(--foreground))"; }}
           >
             Download Resume ↗
           </a>

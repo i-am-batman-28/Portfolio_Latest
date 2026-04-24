@@ -10,81 +10,78 @@ const navItems = [
   { name: "Contact",    href: "#contact" },
 ];
 
-const sectionIds = ["hero", "about", "experience", "projects", "skills", "contact"];
-
 export const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("hero");
+  const [scrolled,   setScrolled]   = useState(false);
+  const [menuOpen,   setMenuOpen]   = useState(false);
+  const [active,     setActive]     = useState("hero");
 
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
+    const ids = ["hero", "about", "experience", "projects", "skills", "contact"];
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveSection(entry.target.id);
-        });
-      },
+      entries => entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }),
       { rootMargin: "-40% 0px -55% 0px" }
     );
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
+    ids.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
     return () => observer.disconnect();
   }, []);
 
   return (
-    <nav className={cn(
-      "fixed w-full z-50 transition-all duration-500",
-      isScrolled
-        ? "py-3 backdrop-blur-xl border-b"
-        : "py-6"
-    )}
-    style={isScrolled ? {
-      background: "hsl(220 15% 5% / 0.85)",
-      borderColor: "hsl(var(--border))",
-    } : {}}
+    <nav
+      className={cn("fixed w-full z-50 transition-all duration-500", scrolled ? "py-3" : "py-6")}
+      style={scrolled ? {
+        background: "hsl(224 20% 4% / 0.88)",
+        backdropFilter: "blur(20px) saturate(180%)",
+        WebkitBackdropFilter: "blur(20px) saturate(180%)",
+        borderBottom: "1px solid hsl(224 15% 12%)",
+      } : {}}
     >
       <div className="container flex items-center justify-between">
         {/* Logo */}
-        <a href="#hero" className="flex items-center gap-1 group">
-          <span className="text-sm font-bold tracking-tight text-[hsl(var(--foreground))] group-hover:text-[hsl(var(--primary))] transition-colors duration-200">
+        <a href="#hero" className="flex items-center gap-1.5 group">
+          <span
+            className="text-sm font-bold tracking-tight transition-colors duration-200"
+            style={{ color: "hsl(var(--foreground))" }}
+            onMouseEnter={e => e.currentTarget.style.color = "#60a5fa"}
+            onMouseLeave={e => e.currentTarget.style.color = "hsl(var(--foreground))"}
+          >
             kms
           </span>
           <span
-            className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--primary))] ml-0.5"
-            style={{ boxShadow: "0 0 6px hsl(153 60% 53%)" }}
+            className="w-1.5 h-1.5 rounded-full"
+            style={{ background: "#60a5fa", boxShadow: "0 0 6px #60a5fa" }}
           />
         </a>
 
         {/* Desktop */}
-        <div className="hidden md:flex items-center gap-7">
-          {navItems.map((item) => {
-            const isActive = activeSection === item.href.replace("#", "");
+        <div className="hidden md:flex items-center gap-8">
+          {navItems.map(item => {
+            const isActive = active === item.href.replace("#", "");
             return (
               <a
                 key={item.name}
                 href={item.href}
-                className={cn(
-                  "text-sm transition-colors duration-200 relative flex items-center gap-1.5",
-                  isActive
-                    ? "text-[hsl(var(--foreground))]"
-                    : "text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]"
-                )}
+                className="text-sm flex items-center gap-1.5 transition-colors duration-200 relative group"
+                style={{ color: isActive ? "hsl(var(--foreground))" : "hsl(215 12% 42%)" }}
+                onMouseEnter={e => e.currentTarget.style.color = "hsl(var(--foreground))"}
+                onMouseLeave={e => !isActive && (e.currentTarget.style.color = "hsl(215 12% 42%)")}
               >
                 {isActive && (
                   <span
-                    className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--primary))]"
-                    style={{ boxShadow: "0 0 6px hsl(153 60% 53%)" }}
+                    className="w-1 h-1 rounded-full"
+                    style={{ background: "#60a5fa", boxShadow: "0 0 6px #60a5fa" }}
                   />
                 )}
                 {item.name}
+                <span
+                  className="absolute -bottom-0.5 left-0 h-px transition-all duration-300 w-0 group-hover:w-full"
+                  style={{ background: "#60a5fa40" }}
+                />
               </a>
             );
           })}
@@ -93,12 +90,13 @@ export const Navbar = () => {
             target="_blank" rel="noopener noreferrer"
             className="text-xs font-semibold px-3.5 py-1.5 rounded-lg transition-all duration-200"
             style={{
-              border: "1px solid hsl(153 60% 53% / 0.35)",
-              color: "hsl(var(--primary))",
-              background: "hsl(153 60% 53% / 0.06)",
+              fontFamily: "'JetBrains Mono', monospace",
+              background: "#60a5fa0a",
+              border: "1px solid #60a5fa35",
+              color: "#60a5fa",
             }}
-            onMouseEnter={e => e.currentTarget.style.background = "hsl(153 60% 53% / 0.12)"}
-            onMouseLeave={e => e.currentTarget.style.background = "hsl(153 60% 53% / 0.06)"}
+            onMouseEnter={e => { e.currentTarget.style.background = "#60a5fa18"; e.currentTarget.style.boxShadow = "0 0 15px #60a5fa20"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = "#60a5fa0a"; e.currentTarget.style.boxShadow = "none"; }}
           >
             Resume ↗
           </a>
@@ -106,25 +104,30 @@ export const Navbar = () => {
 
         {/* Mobile toggle */}
         <button
-          onClick={() => setIsMenuOpen((p) => !p)}
-          className="md:hidden p-1.5 text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] transition-colors z-50"
+          onClick={() => setMenuOpen(p => !p)}
+          className="md:hidden p-1.5 transition-colors duration-200 z-50"
+          style={{ color: "hsl(215 12% 45%)" }}
         >
-          {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          {menuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
 
         {/* Mobile menu */}
-        <div className={cn(
-          "fixed inset-0 z-40 flex flex-col items-center justify-center gap-10 md:hidden transition-all duration-400",
-          isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        )}
-        style={{ background: "hsl(220 15% 5% / 0.97)", backdropFilter: "blur(20px)" }}
+        <div
+          className={cn(
+            "fixed inset-0 z-40 flex flex-col items-center justify-center gap-10 md:hidden transition-all duration-400",
+            menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          )}
+          style={{ background: "hsl(224 20% 4% / 0.97)", backdropFilter: "blur(24px)" }}
         >
-          {navItems.map((item) => (
+          {navItems.map(item => (
             <a
               key={item.name}
               href={item.href}
-              className="text-2xl font-medium text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] transition-colors"
-              onClick={() => setIsMenuOpen(false)}
+              className="text-2xl font-semibold transition-colors duration-200"
+              style={{ color: "hsl(215 12% 50%)" }}
+              onMouseEnter={e => e.currentTarget.style.color = "hsl(var(--foreground))"}
+              onMouseLeave={e => e.currentTarget.style.color = "hsl(215 12% 50%)"}
+              onClick={() => setMenuOpen(false)}
             >
               {item.name}
             </a>
@@ -132,8 +135,9 @@ export const Navbar = () => {
           <a
             href="https://drive.google.com/file/d/1XLlVNa_IsVzFjnBEApQ-hG7WUeM9L6Dd/view?usp=share_link"
             target="_blank" rel="noopener noreferrer"
-            className="text-xl text-[hsl(var(--primary))] font-semibold"
-            onClick={() => setIsMenuOpen(false)}
+            className="text-lg font-semibold"
+            style={{ color: "#60a5fa" }}
+            onClick={() => setMenuOpen(false)}
           >
             Resume ↗
           </a>

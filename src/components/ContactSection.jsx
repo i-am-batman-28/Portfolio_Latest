@@ -7,161 +7,158 @@ export const ContactSection = () => {
   const ref = useScrollReveal();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setTimeout(() => { setIsSubmitting(false); setSent(true); }, 1200);
-  };
+  const handleSubmit = (e) => { e.preventDefault(); setIsSubmitting(true); setTimeout(() => { setIsSubmitting(false); setSent(true); }, 1200); };
 
   return (
     <section id="contact" className="py-32 px-4" ref={ref}>
       <div className="container max-w-4xl">
 
         <div className="reveal">
-          <p className="section-label mb-4">
-            <span className="w-8 h-px bg-[hsl(var(--primary))] inline-block" />
-            Contact
-          </p>
-          <h2 className="section-heading mb-3">Let's build something.</h2>
-          <p className="text-[hsl(var(--muted-foreground))] text-[1.05rem] mb-14 max-w-lg">
-            Open to SDE roles, internships, and interesting projects. I usually reply the same day.
+          <div
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono mb-6"
+            style={{ background: "hsl(217 91% 60% / 0.08)", border: "1px solid hsl(217 91% 60% / 0.18)", color: "#60a5fa" }}
+          >
+            <span className="w-1 h-1 rounded-full bg-[#60a5fa]" /> 05 · Contact
+          </div>
+          <h2
+            className="mb-3"
+            style={{ fontSize: "clamp(2rem, 4vw, 2.8rem)", fontWeight: 800, letterSpacing: "-0.035em", lineHeight: 1.1 }}
+          >
+            Let's build something.
+          </h2>
+          <p className="mb-14 text-[1.05rem] max-w-lg" style={{ color: "hsl(215 12% 45%)" }}>
+            Open to SDE roles, internships, and interesting projects. I reply same day.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-
           {/* Left */}
           <div className="reveal reveal-delay-1 space-y-6">
             <a href="mailto:karthikm.s23@iiits.in" className="flex items-center gap-4 group">
               <div
                 className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-all duration-200 group-hover:scale-110"
-                style={{
-                  background: "hsl(153 60% 53% / 0.08)",
-                  border: "1px solid hsl(153 60% 53% / 0.2)",
-                }}
+                style={{ background: "#60a5fa12", border: "1px solid #60a5fa28" }}
               >
-                <Mail size={16} className="text-[hsl(var(--primary))]" />
+                <Mail size={16} style={{ color: "#60a5fa" }} />
               </div>
               <div>
-                <p className="text-[0.68rem] text-[hsl(var(--muted-foreground))] uppercase tracking-wider font-mono mb-0.5">Email</p>
-                <p className="text-sm font-mono text-[hsl(var(--foreground))] group-hover:text-[hsl(var(--primary))] transition-colors">
-                  karthikm.s23@iiits.in
-                </p>
+                <p className="text-[0.65rem] uppercase tracking-wider font-mono mb-0.5" style={{ color: "hsl(215 12% 38%)" }}>Email</p>
+                <p className="text-sm font-mono transition-colors duration-200" style={{ color: "hsl(var(--foreground))" }}
+                  onMouseEnter={e => e.currentTarget.style.color = "#60a5fa"}
+                  onMouseLeave={e => e.currentTarget.style.color = "hsl(var(--foreground))"}
+                >karthikm.s23@iiits.in</p>
               </div>
             </a>
 
             <div className="flex items-center gap-4">
               <div
                 className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
-                style={{ background: "hsl(153 60% 53% / 0.08)", border: "1px solid hsl(153 60% 53% / 0.2)" }}
+                style={{ background: "#60a5fa12", border: "1px solid #60a5fa28" }}
               >
-                <MapPin size={16} className="text-[hsl(var(--primary))]" />
+                <MapPin size={16} style={{ color: "#60a5fa" }} />
               </div>
               <div>
-                <p className="text-[0.68rem] text-[hsl(var(--muted-foreground))] uppercase tracking-wider font-mono mb-0.5">Location</p>
-                <p className="text-sm text-[hsl(var(--foreground))]">Bangalore, India</p>
+                <p className="text-[0.65rem] uppercase tracking-wider font-mono mb-0.5" style={{ color: "hsl(215 12% 38%)" }}>Location</p>
+                <p className="text-sm" style={{ color: "hsl(var(--foreground))" }}>Bangalore, India</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-5 pt-2">
-              <a
-                href="https://github.com/i-am-batman-28"
-                target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] transition-colors"
-              >
-                <FaGithub size={17} /> GitHub
-              </a>
-              <div className="w-px h-4 bg-[hsl(var(--border))]" />
-              <a
-                href="https://www.linkedin.com/in/karthik-sarma-9859b9291/"
-                target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] transition-colors"
-              >
-                <FaLinkedin size={17} /> LinkedIn
-              </a>
+            <div className="flex items-center gap-5 pt-1">
+              {[
+                { href: "https://github.com/i-am-batman-28", icon: FaGithub, label: "GitHub" },
+                { href: "https://www.linkedin.com/in/karthik-sarma-9859b9291/", icon: FaLinkedin, label: "LinkedIn" },
+              ].map(({ href, icon: Icon, label }) => (
+                <a key={label} href={href} target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm transition-colors duration-200"
+                  style={{ color: "hsl(215 12% 42%)" }}
+                  onMouseEnter={e => e.currentTarget.style.color = "#60a5fa"}
+                  onMouseLeave={e => e.currentTarget.style.color = "hsl(215 12% 42%)"}
+                >
+                  <Icon size={16} /> {label}
+                </a>
+              ))}
             </div>
 
-            <div className="pt-2">
+            <div className="pt-1">
               <a
                 href="https://drive.google.com/file/d/1XLlVNa_IsVzFjnBEApQ-hG7WUeM9L6Dd/view?usp=share_link"
                 target="_blank" rel="noopener noreferrer"
-                className="btn-outline hover:border-[hsl(var(--primary)/0.45)] hover:text-[hsl(var(--primary))]"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200"
+                style={{ background: "hsl(224 15% 10%)", border: "1px solid hsl(224 15% 18%)", color: "hsl(215 12% 55%)" }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = "#60a5fa40"; e.currentTarget.style.color = "#60a5fa"; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = "hsl(224 15% 18%)"; e.currentTarget.style.color = "hsl(215 12% 55%)"; }}
               >
                 Download Resume ↗
               </a>
             </div>
 
-            {/* Availability card */}
+            {/* Availability */}
             <div
-              className="p-4 rounded-xl mt-2"
-              style={{ background: "hsl(153 60% 53% / 0.05)", border: "1px solid hsl(153 60% 53% / 0.18)" }}
+              className="p-4 rounded-xl"
+              style={{ background: "#4ade8008", border: "1px solid #4ade8020" }}
             >
               <div className="flex items-center gap-2 mb-1">
                 <span
-                  className="w-2 h-2 rounded-full bg-[hsl(var(--primary))]"
-                  style={{ boxShadow: "0 0 8px hsl(153 60% 53%)" }}
+                  className="w-2 h-2 rounded-full"
+                  style={{ background: "#4ade80", boxShadow: "0 0 8px #4ade80, 0 0 16px #4ade8060" }}
                 />
-                <span className="text-xs font-semibold text-[hsl(var(--primary))]">Currently Available</span>
+                <span className="text-xs font-semibold" style={{ color: "#4ade80" }}>Currently Available</span>
               </div>
-              <p className="text-xs text-[hsl(var(--muted-foreground))] leading-relaxed">
-                Open to full-time SDE roles, internships, and project collaborations starting mid-2025.
+              <p className="text-xs leading-relaxed" style={{ color: "hsl(215 12% 42%)" }}>
+                Open to full-time SDE roles and internships starting mid-2025.
               </p>
             </div>
           </div>
 
-          {/* Right — form */}
+          {/* Form */}
           <div className="reveal reveal-delay-2">
-            <div className="glass-card p-6">
+            <div className="rounded-2xl p-6" style={{ background: "hsl(224 18% 7%)", border: "1px solid hsl(224 15% 13%)" }}>
               {sent ? (
                 <div className="flex flex-col items-center justify-center text-center py-12 gap-3">
-                  <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center mb-2"
-                    style={{ background: "hsl(153 60% 53% / 0.12)", border: "1px solid hsl(153 60% 53% / 0.3)" }}
-                  >
-                    <Send size={18} className="text-[hsl(var(--primary))]" />
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center mb-1"
+                    style={{ background: "#60a5fa12", border: "1px solid #60a5fa30" }}>
+                    <Send size={18} style={{ color: "#60a5fa" }} />
                   </div>
-                  <p className="font-semibold text-[hsl(var(--foreground))]">Message sent!</p>
-                  <p className="text-sm text-[hsl(var(--muted-foreground))]">I'll get back to you soon.</p>
+                  <p className="font-semibold" style={{ color: "hsl(var(--foreground))" }}>Message sent!</p>
+                  <p className="text-sm" style={{ color: "hsl(215 12% 42%)" }}>I'll get back to you soon.</p>
                 </div>
               ) : (
                 <form className="space-y-4" onSubmit={handleSubmit}>
                   {[
-                    { id: "name", label: "Name", type: "text", placeholder: "Your name" },
-                    { id: "email", label: "Email", type: "email", placeholder: "you@example.com" },
-                  ].map(({ id, label, type, placeholder }) => (
-                    <div key={id}>
-                      <label htmlFor={id} className="block text-[0.68rem] text-[hsl(var(--muted-foreground))] mb-1.5 font-mono uppercase tracking-wider">
-                        {label}
+                    { id: "name",  label: "Name",  type: "text",  ph: "Your name" },
+                    { id: "email", label: "Email", type: "email", ph: "you@example.com" },
+                  ].map(f => (
+                    <div key={f.id}>
+                      <label htmlFor={f.id} className="block text-[0.65rem] uppercase tracking-wider font-mono mb-1.5" style={{ color: "hsl(215 12% 38%)" }}>
+                        {f.label}
                       </label>
                       <input
-                        type={type} id={id} name={id} required placeholder={placeholder}
-                        className="w-full px-3.5 py-2.5 rounded-lg text-sm text-[hsl(var(--foreground))] placeholder:text-[hsl(var(--muted-foreground))] outline-none transition-all duration-200"
-                        style={{
-                          background: "hsl(var(--input))",
-                          border: "1px solid hsl(var(--border))",
-                        }}
-                        onFocus={e => e.target.style.borderColor = "hsl(153 60% 53% / 0.5)"}
-                        onBlur={e => e.target.style.borderColor = "hsl(var(--border))"}
+                        type={f.type} id={f.id} name={f.id} required placeholder={f.ph}
+                        className="w-full px-3.5 py-2.5 rounded-xl text-sm outline-none transition-all duration-200"
+                        style={{ background: "hsl(224 20% 9%)", border: "1px solid hsl(224 15% 15%)", color: "hsl(var(--foreground))" }}
+                        onFocus={e => e.target.style.borderColor = "#60a5fa50"}
+                        onBlur={e => e.target.style.borderColor = "hsl(224 15% 15%)"}
                       />
                     </div>
                   ))}
                   <div>
-                    <label htmlFor="message" className="block text-[0.68rem] text-[hsl(var(--muted-foreground))] mb-1.5 font-mono uppercase tracking-wider">
+                    <label htmlFor="message" className="block text-[0.65rem] uppercase tracking-wider font-mono mb-1.5" style={{ color: "hsl(215 12% 38%)" }}>
                       Message
                     </label>
                     <textarea
                       id="message" name="message" required rows={4} placeholder="Hello, I'd like to..."
-                      className="w-full px-3.5 py-2.5 rounded-lg text-sm text-[hsl(var(--foreground))] placeholder:text-[hsl(var(--muted-foreground))] outline-none resize-none transition-all duration-200"
-                      style={{ background: "hsl(var(--input))", border: "1px solid hsl(var(--border))" }}
-                      onFocus={e => e.target.style.borderColor = "hsl(153 60% 53% / 0.5)"}
-                      onBlur={e => e.target.style.borderColor = "hsl(var(--border))"}
+                      className="w-full px-3.5 py-2.5 rounded-xl text-sm outline-none resize-none transition-all duration-200"
+                      style={{ background: "hsl(224 20% 9%)", border: "1px solid hsl(224 15% 15%)", color: "hsl(var(--foreground))" }}
+                      onFocus={e => e.target.style.borderColor = "#60a5fa50"}
+                      onBlur={e => e.target.style.borderColor = "hsl(224 15% 15%)"}
                     />
                   </div>
                   <button
                     type="submit" disabled={isSubmitting}
-                    className="btn-primary w-full justify-center hover:opacity-90 disabled:opacity-50"
-                    style={{ boxShadow: "0 0 20px hsl(153 60% 53% / 0.2)" }}
+                    className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm transition-all duration-200 disabled:opacity-50"
+                    style={{ background: "hsl(var(--primary))", color: "#0f172a", boxShadow: "0 0 25px hsl(217 91% 60% / 0.25)" }}
+                    onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 0 35px hsl(217 91% 60% / 0.4)"; e.currentTarget.style.transform = "translateY(-1px)"; }}
+                    onMouseLeave={e => { e.currentTarget.style.boxShadow = "0 0 25px hsl(217 91% 60% / 0.25)"; e.currentTarget.style.transform = "translateY(0)"; }}
                   >
                     {isSubmitting ? "Sending…" : "Send Message"} <Send size={14} />
                   </button>
