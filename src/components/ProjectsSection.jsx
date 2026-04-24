@@ -135,7 +135,7 @@ const SmallCard = ({ project }) => {
         </div>
       </div>
       <p className="text-xs leading-relaxed flex-1 mb-4" style={{ color: "hsl(215 12% 45%)" }}>{project.description}</p>
-      <div className="flex flex-wrap gap-1.5 mt-auto">
+      <div className="flex flex-wrap gap-1.5 mt-auto tag-group">
         {project.stack.map(s => <span key={s} className="tag">{s}</span>)}
       </div>
     </div>

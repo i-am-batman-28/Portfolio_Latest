@@ -12,24 +12,30 @@ import { ProjectsSection } from "../components/ProjectsSection";
 import { SkillsSection } from "../components/SkillsSection";
 import { ContactSection } from "../components/ContactSection";
 import { Footer } from "../components/Footer";
+import { useGSAPAnimations } from "../hooks/useGSAPAnimations";
 
-export const Home = () => (
-  <div className="min-h-screen bg-[hsl(var(--background))] text-[hsl(var(--foreground))] overflow-x-hidden">
-    <CustomCursor />
-    <MouseSpotlight />
-    <ScrollProgress />
-    <OrbitalBackground />
-    <AnimatedOrbs />
-    <Navbar />
-    <main className="relative z-10">
-      <HeroSection />
-      <AboutSection />
-      <ExperienceSection />
-      <AchievementsSection />
-      <ProjectsSection />
-      <SkillsSection />
-      <ContactSection />
-    </main>
-    <Footer />
-  </div>
-);
+const HomeInner = () => {
+  useGSAPAnimations();
+  return (
+    <div className="min-h-screen bg-[hsl(var(--background))] text-[hsl(var(--foreground))] overflow-x-hidden">
+      <CustomCursor />
+      <MouseSpotlight />
+      <ScrollProgress />
+      <OrbitalBackground />
+      <AnimatedOrbs />
+      <Navbar />
+      <main className="relative z-10">
+        <HeroSection />
+        <AboutSection />
+        <ExperienceSection />
+        <AchievementsSection />
+        <ProjectsSection />
+        <SkillsSection />
+        <ContactSection />
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export const Home = () => <HomeInner />;

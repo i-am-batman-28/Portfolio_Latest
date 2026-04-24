@@ -160,6 +160,7 @@ export const ExperienceSection = () => {
                       {exp.metrics.map(m => (
                         <div
                           key={m.l}
+                          data-metric
                           className="px-3 py-1.5 rounded-lg text-center"
                           style={{ background: exp.accent + "10", border: `1px solid ${exp.accent}28` }}
                         >
@@ -179,7 +180,7 @@ export const ExperienceSection = () => {
                     ))}
                   </ul>
 
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-1.5 tag-group">
                     {exp.stack.map(s => <span key={s} className="tag">{s}</span>)}
                   </div>
                 </TiltCard>
