@@ -1,4 +1,27 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useTilt } from "@/hooks/useTilt";
+
+const TiltCard = ({ exp, children }) => {
+  const { ref, onMouseMove, onMouseLeave } = useTilt(5);
+  return (
+    <div
+      ref={ref}
+      className="rounded-2xl p-6"
+      style={{
+        background: "hsl(224 18% 7%)",
+        border: "1px solid hsl(224 15% 13%)",
+        transition: "border-color 0.3s ease, transform 0.15s ease, box-shadow 0.3s ease",
+        transformStyle: "preserve-3d",
+        willChange: "transform",
+      }}
+      onMouseMove={onMouseMove}
+      onMouseEnter={e => { e.currentTarget.style.borderColor = exp.accent + "40"; e.currentTarget.style.boxShadow = `0 20px 40px rgba(0,0,0,0.3), 0 0 30px ${exp.accent}10`; }}
+      onMouseLeave={e => { onMouseLeave(e); e.currentTarget.style.borderColor = "hsl(224 15% 13%)"; e.currentTarget.style.boxShadow = "none"; }}
+    >
+      {children}
+    </div>
+  );
+};
 
 const experiences = [
   {
@@ -35,7 +58,7 @@ const experiences = [
     company: "Ontune AI",
     period: "Jun – Jul 2025",
     location: "Hybrid · Internship",
-    accent: "#34d399",
+    accent: "#818cf8",
     metrics: [{ n: "500+", l: "Leads/day" }, { n: "65%", l: "Cost cut" }, { n: "40%", l: "Faster queries" }],
     bullets: [
       "WhatsApp AI agent for real estate lead qualification — 500+ leads/day, 65% cost reduction.",
@@ -49,7 +72,7 @@ const experiences = [
     company: "Excelerate",
     period: "May – Jul 2025",
     location: "Remote · Internship",
-    accent: "#fbbf24",
+    accent: "#93c5fd",
     metrics: [],
     bullets: [
       "Worked with Dubai and US teams to extract insights from global job datasets.",
@@ -116,12 +139,7 @@ export const ExperienceSection = () => {
                   }}
                 />
 
-                <div
-                  className="rounded-2xl p-6 transition-all duration-300"
-                  style={{ background: "hsl(224 18% 7%)", border: "1px solid hsl(224 15% 13%)" }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = exp.accent + "40"; e.currentTarget.style.transform = "translateX(4px)"; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = "hsl(224 15% 13%)"; e.currentTarget.style.transform = "translateX(0)"; }}
-                >
+                <TiltCard exp={exp}>
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
                     <div>
                       <h3 className="font-bold text-base mb-0.5" style={{ color: "hsl(var(--foreground))" }}>{exp.title}</h3>
@@ -161,7 +179,7 @@ export const ExperienceSection = () => {
                   <div className="flex flex-wrap gap-1.5">
                     {exp.stack.map(s => <span key={s} className="tag">{s}</span>)}
                   </div>
-                </div>
+                </TiltCard>
               </div>
             ))}
           </div>

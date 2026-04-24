@@ -30,7 +30,7 @@ const cards = [
     title: "Community",
     body: "Core member at TEDxIIITSriCity, GDG, and Matrix. Learning in public, building with others.",
     icon: "🤝",
-    accent: "#34d399",
+    accent: "#60a5fa",
   },
 ];
 

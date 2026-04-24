@@ -95,14 +95,14 @@ export const ContactSection = () => {
             {/* Availability */}
             <div
               className="p-4 rounded-xl"
-              style={{ background: "#4ade8008", border: "1px solid #4ade8020" }}
+              style={{ background: "rgba(96,165,250,0.04)", border: "1px solid rgba(96,165,250,0.12)" }}
             >
               <div className="flex items-center gap-2 mb-1">
                 <span
                   className="w-2 h-2 rounded-full"
-                  style={{ background: "#4ade80", boxShadow: "0 0 8px #4ade80, 0 0 16px #4ade8060" }}
+                  style={{ background: "#60a5fa", boxShadow: "0 0 8px #60a5fa, 0 0 16px #60a5fa60" }}
                 />
-                <span className="text-xs font-semibold" style={{ color: "#4ade80" }}>Currently Available</span>
+                <span className="text-xs font-semibold" style={{ color: "#60a5fa" }}>Currently Available</span>
               </div>
               <p className="text-xs leading-relaxed" style={{ color: "hsl(215 12% 42%)" }}>
                 Open to full-time SDE roles and internships starting mid-2025.

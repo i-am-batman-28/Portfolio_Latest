@@ -3,10 +3,10 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 const groups = [
   { label: "Languages",        skills: ["Python", "JavaScript (ES6+)", "TypeScript", "Java", "C", "SQL"],                                                         accent: "#60a5fa" },
   { label: "Backend",          skills: ["FastAPI", "Node.js", "Express.js", "REST APIs", "Microservices", "Celery", "JWT / OAuth2"],                               accent: "#818cf8" },
-  { label: "Databases & Cache",skills: ["PostgreSQL", "MongoDB", "Redis", "Pinecone"],                                                                             accent: "#34d399" },
-  { label: "Frontend",         skills: ["React.js", "Next.js", "Redux", "Tailwind CSS"],                                                                           accent: "#f472b6" },
-  { label: "AI & ML",          skills: ["LangChain", "LLaMA-3", "RAG Pipelines", "HuggingFace", "Pandas", "NumPy", "Scikit-learn"],                               accent: "#fbbf24" },
-  { label: "Tools & Infra",    skills: ["Docker", "Git / GitHub", "Linux", "Postman", "Vercel", "Jupyter"],                                                       accent: "#fb923c" },
+  { label: "Databases & Cache",skills: ["PostgreSQL", "MongoDB", "Redis", "Pinecone"],                                                                             accent: "#93c5fd" },
+  { label: "Frontend",         skills: ["React.js", "Next.js", "Redux", "Tailwind CSS"],                                                                           accent: "#60a5fa" },
+  { label: "AI & ML",          skills: ["LangChain", "LLaMA-3", "RAG Pipelines", "HuggingFace", "Pandas", "NumPy", "Scikit-learn"],                               accent: "#a5b4fc" },
+  { label: "Tools & Infra",    skills: ["Docker", "Git / GitHub", "Linux", "Postman", "Vercel", "Jupyter"],                                                       accent: "#818cf8" },
 ];
 
 const concepts = ["Data Structures & Algorithms", "System Design", "OOP", "Distributed Systems", "Agile"];

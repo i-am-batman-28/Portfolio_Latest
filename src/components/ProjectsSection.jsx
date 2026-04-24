@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useTilt } from "@/hooks/useTilt";
 
 const projects = [
   {
@@ -68,12 +69,16 @@ const projects = [
   },
 ];
 
-const SmallCard = ({ project }) => (
+const SmallCard = ({ project }) => {
+  const { ref, onMouseMove, onMouseLeave } = useTilt(6);
+  return (
   <div
-    className="rounded-2xl p-5 flex flex-col h-full group transition-all duration-300"
-    style={{ background: "hsl(224 18% 7%)", border: "1px solid hsl(224 15% 13%)" }}
-    onMouseEnter={e => { e.currentTarget.style.borderColor = "hsl(217 91% 60% / 0.3)"; e.currentTarget.style.transform = "translateY(-4px)"; }}
-    onMouseLeave={e => { e.currentTarget.style.borderColor = "hsl(224 15% 13%)"; e.currentTarget.style.transform = "translateY(0)"; }}
+    ref={ref}
+    className="rounded-2xl p-5 flex flex-col h-full group"
+    style={{ background: "hsl(224 18% 7%)", border: "1px solid hsl(224 15% 13%)", transition: "border-color 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease", transformStyle: "preserve-3d", willChange: "transform" }}
+    onMouseMove={onMouseMove}
+    onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(96,165,250,0.3)"; e.currentTarget.style.boxShadow = "0 20px 40px rgba(0,0,0,0.3), 0 0 30px rgba(96,165,250,0.08)"; }}
+    onMouseLeave={e => { onMouseLeave(e); e.currentTarget.style.borderColor = "hsl(224 15% 13%)"; e.currentTarget.style.boxShadow = "none"; }}
   >
     <div className="flex items-start justify-between gap-2 mb-3">
       <div className="flex-1 min-w-0">
@@ -110,7 +115,8 @@ const SmallCard = ({ project }) => (
       {project.stack.map(s => <span key={s} className="tag">{s}</span>)}
     </div>
   </div>
-);
+  );
+};
 
 export const ProjectsSection = () => {
   const ref = useScrollReveal();
