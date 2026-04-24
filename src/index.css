@@ -69,6 +69,10 @@
     from { opacity: 0; transform: translateY(10px); }
     to   { opacity: 1; transform: translateY(0); }
   }
+  @keyframes letter-in {
+    from { opacity: 0; filter: blur(8px); transform: translateY(20px); }
+    to   { opacity: 1; filter: blur(0px); transform: translateY(0); }
+  }
   @keyframes scan-line {
     0%   { top: -2px;   opacity: 0; }
     5%   { opacity: 1; }
