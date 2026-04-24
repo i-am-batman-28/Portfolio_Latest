@@ -28,7 +28,7 @@ const featuredProjects = [
     badgeColor: "#fbbf24",
     terminalCmd: "uvicorn app.main:app --host 0.0.0.0 --port 8000",
     accentColor: "#60a5fa",
-    image: "/projects/Screenshot 2026-04-25 at 12.56.53 AM.png",
+    image: "/projects/1776272525639.jpeg",
   },
   {
     id: 2,
@@ -53,7 +53,7 @@ const featuredProjects = [
     badgeColor: "#34d399",
     terminalCmd: "npm run build && vercel deploy --prod",
     accentColor: "#818cf8",
-    image: "/projects/craftchain.png",
+    image: "/projects/Screenshot 2026-04-25 at 12.56.53 AM.png",
   },
 ];
 
