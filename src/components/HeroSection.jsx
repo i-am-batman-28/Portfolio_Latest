@@ -276,11 +276,11 @@ export const HeroSection = () => {
             </div>
 
             <h1 style={{ fontSize: "clamp(2.8rem, 7vw, 5rem)", fontWeight: 900, letterSpacing: "-0.04em", lineHeight: 1.0, marginBottom: "1.25rem" }}>
-              <AnimWord word="I build AI backends" delay={0.3} color="hsl(var(--foreground))" />
+              <AnimWord word="I build systems" delay={0.3} color="hsl(var(--foreground))" />
               <br />
               <AnimWord
-                word="that ship."
-                delay={1.0}
+                word="that scale."
+                delay={0.9}
                 gradient="linear-gradient(135deg, #60a5fa 0%, #818cf8 50%, #60a5fa 100%)"
               />
             </h1>
