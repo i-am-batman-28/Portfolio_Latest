@@ -31,12 +31,13 @@ const experiences = [
     period: "Dec 2025 – Present",
     location: "Remote · Full-time",
     accent: "#60a5fa",
-    metrics: [{ n: "60%", l: "Faster validation" }, { n: "10+", l: "Tenants" }],
+    metrics: [{ n: "60%", l: "Faster validation" }, { n: "10+", l: "Tenants" }, { n: "3", l: "Permission tiers" }],
     bullets: [
-      "Scalable multi-tenant REST API — FastAPI + PostgreSQL with RBAC across 3 permission tiers, audit-logged task lifecycle across 10+ tenant workspaces.",
-      "Search evaluation microservice with bulk query ingestion + configurable ranking pipeline benchmarking — cut pipeline validation time by 60%.",
+      "Designed and owns a production multi-tenant REST API (FastAPI + PostgreSQL) — isolated workloads, RBAC across 3 permission tiers, full audit-log trail for 10+ client tenants.",
+      "Built a search evaluation microservice from scratch: bulk query ingestion, configurable ranking pipeline, automated benchmarking — cut validation cycle time by 60%.",
+      "Owns deployment, schema migrations, and zero-downtime rollout strategy end-to-end.",
     ],
-    stack: ["FastAPI", "PostgreSQL", "Python", "RBAC", "Microservices"],
+    stack: ["FastAPI", "PostgreSQL", "Python", "RBAC", "Microservices", "Celery"],
   },
   {
     id: 2,
@@ -45,12 +46,13 @@ const experiences = [
     period: "Jul – Sep 2025",
     location: "Remote · Contract",
     accent: "#818cf8",
-    metrics: [{ n: "600k+", l: "Records" }, { n: "88%", l: "Precision" }, { n: "45%", l: "Cost saved" }],
+    metrics: [{ n: "600k+", l: "Records" }, { n: "88%", l: "Precision" }, { n: "45%", l: "Cost saved" }, { n: "25%", l: "False positives ↓" }],
     bullets: [
-      "Fraud detection analytics platform over 600k+ records — 88% anomaly precision, 45% operational cost reduction.",
-      "Merchant risk scoring dashboards — 25% fewer false positives, 2× faster analyst triage.",
+      "Built a fraud detection analytics platform over 600k+ transaction records — 88% anomaly detection precision, 45% reduction in operational investigation cost.",
+      "Engineered merchant risk scoring dashboards that cut false positive rate by 25% and reduced analyst triage time by 2×.",
+      "Delivered findings to cross-functional stakeholders; findings directly influenced product roadmap decisions.",
     ],
-    stack: ["Python", "Pandas", "SQL", "Analytics"],
+    stack: ["Python", "Pandas", "SQL", "Matplotlib", "Seaborn"],
   },
   {
     id: 3,
@@ -61,10 +63,11 @@ const experiences = [
     accent: "#818cf8",
     metrics: [{ n: "500+", l: "Leads/day" }, { n: "65%", l: "Cost cut" }, { n: "40%", l: "Faster queries" }],
     bullets: [
-      "WhatsApp AI agent for real estate lead qualification — 500+ leads/day, 65% cost reduction.",
-      "RAG pipelines with LangChain + LLaMA-3 + Pinecone — 40% faster query resolution.",
+      "Shipped a production WhatsApp AI agent for real estate lead qualification — processing 500+ leads/day with 65% cost reduction vs. prior manual workflow.",
+      "Built RAG pipelines (LangChain + LLaMA-3 + Pinecone vector DB) that cut average query resolution time by 40%.",
+      "Integrated multi-turn conversational memory so the agent retains context across lead qualification sessions.",
     ],
-    stack: ["FastAPI", "LangChain", "LLaMA-3", "Pinecone"],
+    stack: ["FastAPI", "LangChain", "LLaMA-3", "Pinecone", "WhatsApp API"],
   },
   {
     id: 4,
@@ -73,12 +76,12 @@ const experiences = [
     period: "May – Jul 2025",
     location: "Remote · Internship",
     accent: "#93c5fd",
-    metrics: [],
+    metrics: [{ n: "Global", l: "Dubai + US teams" }],
     bullets: [
-      "Worked with Dubai and US teams to extract insights from global job datasets.",
-      "Modeled time-series job trends, analyzed employer trust scores and anomalies.",
+      "Collaborated with cross-continental teams (Dubai + US) to extract and surface insights from global job market datasets.",
+      "Modeled time-series job trend signals and analyzed employer trust score anomalies for strategic product decisions.",
     ],
-    stack: ["Python", "Pandas", "Time Series"],
+    stack: ["Python", "Pandas", "Time Series", "Data Analysis"],
   },
 ];
 

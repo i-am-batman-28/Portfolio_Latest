@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Download } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
-const ROLES = ["Backend Engineer", "AI Systems Builder", "Full-Stack Developer", "Systems Thinker"];
+const ROLES = ["FastAPI · PostgreSQL · Redis", "LLaMA-3 · LangChain · Pinecone", "Celery · Microservices · RBAC", "Next.js · TypeScript · React"];
 
 /* ── Letter-by-letter animated word ── */
 const AnimWord = ({ word, delay = 0, color, gradient }) => {
@@ -276,11 +276,11 @@ export const HeroSection = () => {
             </div>
 
             <h1 style={{ fontSize: "clamp(2.8rem, 7vw, 5rem)", fontWeight: 900, letterSpacing: "-0.04em", lineHeight: 1.0, marginBottom: "1.25rem" }}>
-              <AnimWord word="I build systems" delay={0.3} color="hsl(var(--foreground))" />
+              <AnimWord word="I build AI backends" delay={0.3} color="hsl(var(--foreground))" />
               <br />
               <AnimWord
-                word="that scale."
-                delay={0.9}
+                word="that ship."
+                delay={1.0}
                 gradient="linear-gradient(135deg, #60a5fa 0%, #818cf8 50%, #60a5fa 100%)"
               />
             </h1>
@@ -294,10 +294,10 @@ export const HeroSection = () => {
               </span>
             </div>
 
-            <p className="max-w-[520px] mb-10 text-[1.05rem] leading-relaxed"
+            <p className="max-w-[540px] mb-10 text-[1.05rem] leading-relaxed"
               style={{ color: "hsl(215 12% 50%)", opacity: loaded ? 1 : 0, transform: loaded ? "translateY(0)" : "translateY(20px)", transition: "opacity 0.7s ease 1.5s, transform 0.7s ease 1.5s" }}>
-              BTech AI & DS @ IIIT Sri City. I ship production APIs, AI pipelines, and full-stack products —{" "}
-              <span style={{ color: "hsl(var(--foreground))", fontWeight: 500 }}>with numbers to back it up.</span>
+              Multi-tenant APIs · RAG pipelines · real-time systems.{" "}
+              <span style={{ color: "hsl(var(--foreground))", fontWeight: 500 }}>3 internships, 2 hackathon wins, production since Year 2.</span>
             </p>
 
             <div className="flex flex-wrap items-center gap-3 mb-10"
