@@ -1,5 +1,5 @@
 import { CustomCursor } from "../components/CustomCursor";
-import { ParticleCanvas } from "../components/ParticleCanvas";
+import { OrbitalBackground } from "../components/OrbitalBackground";
 import { MouseSpotlight } from "../components/MouseSpotlight";
 import { ScrollProgress } from "../components/ScrollProgress";
 import { AnimatedOrbs } from "../components/AnimatedOrbs";
@@ -17,10 +17,7 @@ export const Home = () => (
     <CustomCursor />
     <MouseSpotlight />
     <ScrollProgress />
-    {/* Particle canvas sits behind everything */}
-    <div className="fixed inset-0 z-0 pointer-events-none">
-      <ParticleCanvas />
-    </div>
+    <OrbitalBackground />
     <AnimatedOrbs />
     <Navbar />
     <main className="relative z-10">
