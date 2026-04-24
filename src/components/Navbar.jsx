@@ -50,7 +50,7 @@ export const Navbar = () => {
             onMouseEnter={e => e.currentTarget.style.color = "#60a5fa"}
             onMouseLeave={e => e.currentTarget.style.color = "hsl(var(--foreground))"}
           >
-            kms
+            Karthik
           </span>
           <span
             className="w-1.5 h-1.5 rounded-full"
