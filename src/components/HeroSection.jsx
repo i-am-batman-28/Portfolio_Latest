@@ -14,10 +14,11 @@ const AnimWord = ({ word, delay = 0, color, gradient }) => {
           key={i}
           style={{
             display: "inline-block",
-            opacity: 0,
-            filter: "blur(8px)",
-            transform: "translateY(20px)",
-            animation: `letter-in 0.5s cubic-bezier(0.16,1,0.3,1) ${delay + i * 0.04}s forwards`,
+            animationName: "letter-in",
+            animationDuration: "0.5s",
+            animationTimingFunction: "cubic-bezier(0.16,1,0.3,1)",
+            animationDelay: `${delay + i * 0.04}s`,
+            animationFillMode: "both",
             ...(gradient ? {
               background: gradient,
               WebkitBackgroundClip: "text",
@@ -27,7 +28,7 @@ const AnimWord = ({ word, delay = 0, color, gradient }) => {
             } : { color }),
           }}
         >
-          {ch === " " ? " " : ch}
+          {ch === " " ? " " : ch}
         </span>
       ))}
     </span>
