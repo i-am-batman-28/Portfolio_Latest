@@ -8,14 +8,7 @@ const ROLES = ["Backend Engineer", "AI Systems Builder", "Full-Stack Developer",
 const AnimWord = ({ word, delay = 0, color, gradient }) => {
   const letters = word.split("");
   return (
-    <span style={{ display: "inline-block", ...(gradient ? {
-      background: gradient,
-      WebkitBackgroundClip: "text",
-      WebkitTextFillColor: "transparent",
-      backgroundClip: "text",
-      backgroundSize: "200% 200%",
-      animation: "gradient-shift 6s ease infinite",
-    } : { color }) }}>
+    <span style={{ display: "inline-block" }}>
       {letters.map((ch, i) => (
         <span
           key={i}
@@ -25,6 +18,13 @@ const AnimWord = ({ word, delay = 0, color, gradient }) => {
             filter: "blur(8px)",
             transform: "translateY(20px)",
             animation: `letter-in 0.5s cubic-bezier(0.16,1,0.3,1) ${delay + i * 0.04}s forwards`,
+            ...(gradient ? {
+              background: gradient,
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              backgroundSize: "200% 200%",
+            } : { color }),
           }}
         >
           {ch === " " ? " " : ch}
@@ -95,8 +95,8 @@ const TerminalWindow = () => {
   }, []);
 
   const fmt = (s) => {
-    const h = Math.floor(s / 3600).toString().padStart(2, "0");
-    const m = Math.floor((s % 3600) / 60).toString().padStart(2, "0");
+    const h   = Math.floor(s / 3600).toString().padStart(2, "0");
+    const m   = Math.floor((s % 3600) / 60).toString().padStart(2, "0");
     const sec = (s % 60).toString().padStart(2, "0");
     return `${h}:${m}:${sec}`;
   };
@@ -109,7 +109,6 @@ const TerminalWindow = () => {
         boxShadow: "0 25px 60px rgba(0,0,0,0.6), 0 0 80px rgba(96,165,250,0.05)",
         animation: "float 7s ease-in-out infinite",
       }}>
-      {/* Chrome */}
       <div className="flex items-center justify-between px-4 py-3"
         style={{ background: "hsl(224 20% 5%)", borderBottom: "1px solid hsl(224 15% 12%)" }}>
         <div className="flex items-center gap-1.5">
@@ -121,14 +120,13 @@ const TerminalWindow = () => {
           style={{ fontFamily: "'JetBrains Mono', monospace", color: "#475569", background: "hsl(224 20% 8%)" }}>
           karthik@dev — zsh
         </span>
-        {/* Live uptime */}
         <div className="flex items-center gap-1.5">
-          <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#60a5fa", boxShadow: "0 0 6px #60a5fa", animation: "glow-breathe 2s ease-in-out infinite" }} />
+          <span className="w-1.5 h-1.5 rounded-full"
+            style={{ background: "#60a5fa", boxShadow: "0 0 6px #60a5fa", animation: "glow-breathe 2s ease-in-out infinite" }} />
           <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.6rem", color: "#60a5fa" }}>{fmt(uptime)}</span>
         </div>
       </div>
 
-      {/* Body */}
       <div className="p-5 min-h-[200px] space-y-1.5">
         {lines.slice(0, visible).map((line, i) => (
           <div key={i} className="text-xs leading-relaxed"
@@ -145,11 +143,11 @@ const TerminalWindow = () => {
         )}
       </div>
 
-      {/* Status bar */}
       <div className="px-5 py-2 flex items-center justify-between"
         style={{ borderTop: "1px solid hsl(224 15% 10%)", background: "hsl(224 20% 4%)" }}>
         <div className="flex items-center gap-3">
-          <span className="flex items-center gap-1" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.58rem", color: "#60a5fa" }}>
+          <span className="flex items-center gap-1"
+            style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.58rem", color: "#60a5fa" }}>
             <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#60a5fa" }} /> RUNNING
           </span>
           <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.58rem", color: "#475569" }}>
@@ -179,12 +177,10 @@ const MagneticBtn = ({ children, href, style, onMouseEnter, onMouseLeave, classN
     ref.current.style.transform = "translate(0,0)";
     onMouseLeave?.(e);
   };
-  const onEnter = (e) => {
-    onMouseEnter?.(e);
-  };
   return (
-    <a ref={ref} href={href} className={className} style={{ ...style, transition: "transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease" }}
-      onMouseMove={onMove} onMouseLeave={onLeave} onMouseEnter={onEnter}>
+    <a ref={ref} href={href} className={className}
+      style={{ ...style, transition: "transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease" }}
+      onMouseMove={onMove} onMouseLeave={onLeave} onMouseEnter={onMouseEnter}>
       {children}
     </a>
   );
@@ -197,6 +193,7 @@ export const HeroSection = () => {
   const [deleting,  setDeleting]  = useState(false);
   const [charIdx,   setCharIdx]   = useState(0);
   const [loaded,    setLoaded]    = useState(false);
+
   useEffect(() => { setTimeout(() => setLoaded(true), 100); }, []);
 
   useEffect(() => {
@@ -218,7 +215,6 @@ export const HeroSection = () => {
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
 
-      {/* Ambient glow */}
       <div className="absolute pointer-events-none" style={{
         top: "10%", left: "-10%", width: "70vw", height: "70vw",
         background: "radial-gradient(circle, hsl(217 91% 60% / 0.07) 0%, transparent 60%)",
@@ -230,7 +226,6 @@ export const HeroSection = () => {
         animation: "glow-breathe 11s ease-in-out infinite 2s",
       }} />
 
-      {/* Scanline */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 1 }}>
         <div style={{
           position: "absolute", left: 0, right: 0, height: "1px",
@@ -243,9 +238,7 @@ export const HeroSection = () => {
       <div className="container relative pt-28 pb-20" style={{ zIndex: 10 }}>
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-16 xl:gap-24 items-center">
 
-          {/* ── LEFT ── */}
           <div>
-            {/* Eyebrow */}
             <div className="inline-flex items-center gap-2.5 mb-8 px-4 py-2 rounded-full text-xs font-semibold"
               style={{
                 background: "hsl(217 91% 60% / 0.08)", border: "1px solid hsl(217 91% 60% / 0.22)",
@@ -253,11 +246,11 @@ export const HeroSection = () => {
                 opacity: loaded ? 1 : 0, transform: loaded ? "translateY(0)" : "translateY(16px)",
                 transition: "opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s",
               }}>
-              <span className="w-2 h-2 rounded-full" style={{ background: "#60a5fa", boxShadow: "0 0 8px #60a5fa, 0 0 16px #60a5fa60", animation: "glow-breathe 2s ease-in-out infinite" }} />
+              <span className="w-2 h-2 rounded-full"
+                style={{ background: "#60a5fa", boxShadow: "0 0 8px #60a5fa, 0 0 16px #60a5fa60", animation: "glow-breathe 2s ease-in-out infinite" }} />
               Available for SDE roles · 2025
             </div>
 
-            {/* Avatar row */}
             <div className="flex items-center gap-4 mb-6"
               style={{ opacity: loaded ? 1 : 0, transform: loaded ? "translateY(0)" : "translateY(20px)", transition: "opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s" }}>
               <div className="relative">
@@ -271,7 +264,6 @@ export const HeroSection = () => {
               </p>
             </div>
 
-            {/* HEADLINE — letter-by-letter */}
             <h1 style={{ fontSize: "clamp(2.8rem, 7vw, 5rem)", fontWeight: 900, letterSpacing: "-0.04em", lineHeight: 1.0, marginBottom: "1.25rem" }}>
               <AnimWord word="I build systems" delay={0.3} color="hsl(var(--foreground))" />
               <br />
@@ -282,7 +274,6 @@ export const HeroSection = () => {
               />
             </h1>
 
-            {/* Typewriter */}
             <div className="h-8 flex items-center mb-7"
               style={{ opacity: loaded ? 1 : 0, transform: loaded ? "translateY(0)" : "translateY(20px)", transition: "opacity 0.7s ease 1.4s, transform 0.7s ease 1.4s" }}>
               <span className="text-lg font-medium" style={{ color: "hsl(215 12% 52%)", fontFamily: "'JetBrains Mono', monospace" }}>
@@ -292,48 +283,39 @@ export const HeroSection = () => {
               </span>
             </div>
 
-            {/* Bio */}
             <p className="max-w-[520px] mb-10 text-[1.05rem] leading-relaxed"
               style={{ color: "hsl(215 12% 50%)", opacity: loaded ? 1 : 0, transform: loaded ? "translateY(0)" : "translateY(20px)", transition: "opacity 0.7s ease 1.5s, transform 0.7s ease 1.5s" }}>
               BTech AI & DS @ IIIT Sri City. I ship production APIs, AI pipelines, and full-stack products —{" "}
               <span style={{ color: "hsl(var(--foreground))", fontWeight: 500 }}>with numbers to back it up.</span>
             </p>
 
-            {/* CTAs — magnetic */}
             <div className="flex flex-wrap items-center gap-3 mb-10"
               style={{ opacity: loaded ? 1 : 0, transform: loaded ? "translateY(0)" : "translateY(20px)", transition: "opacity 0.7s ease 1.6s, transform 0.7s ease 1.6s" }}>
-              <MagneticBtn
-                href="#projects"
+              <MagneticBtn href="#projects"
                 className="group flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm"
                 style={{ background: "hsl(var(--primary))", color: "#0f172a", boxShadow: "0 0 30px rgba(96,165,250,0.35), 0 4px 15px rgba(0,0,0,0.3)" }}
                 onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 0 50px rgba(96,165,250,0.65), 0 8px 25px rgba(0,0,0,0.3)"; }}
-                onMouseLeave={e => { e.currentTarget.style.boxShadow = "0 0 30px rgba(96,165,250,0.35), 0 4px 15px rgba(0,0,0,0.3)"; }}
-              >
+                onMouseLeave={e => { e.currentTarget.style.boxShadow = "0 0 30px rgba(96,165,250,0.35), 0 4px 15px rgba(0,0,0,0.3)"; }}>
                 View My Work <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform duration-200" />
               </MagneticBtn>
 
-              <MagneticBtn
-                href="#contact"
+              <MagneticBtn href="#contact"
                 className="flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-sm"
                 style={{ background: "hsl(224 15% 10%)", color: "hsl(var(--foreground))", border: "1px solid hsl(224 15% 18%)" }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(96,165,250,0.4)"; e.currentTarget.style.color = "#60a5fa"; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = "hsl(224 15% 18%)"; e.currentTarget.style.color = "hsl(var(--foreground))"; }}
-              >
+                onMouseLeave={e => { e.currentTarget.style.borderColor = "hsl(224 15% 18%)"; e.currentTarget.style.color = "hsl(var(--foreground))"; }}>
                 Get in Touch
               </MagneticBtn>
 
-              <MagneticBtn
-                href="https://drive.google.com/file/d/1XLlVNa_IsVzFjnBEApQ-hG7WUeM9L6Dd/view?usp=share_link"
+              <MagneticBtn href="https://drive.google.com/file/d/1XLlVNa_IsVzFjnBEApQ-hG7WUeM9L6Dd/view?usp=share_link"
                 className="flex items-center gap-2 px-5 py-3 rounded-xl font-medium text-sm"
                 style={{ color: "hsl(215 12% 48%)" }}
                 onMouseEnter={e => e.currentTarget.style.color = "#60a5fa"}
-                onMouseLeave={e => e.currentTarget.style.color = "hsl(215 12% 48%)"}
-              >
+                onMouseLeave={e => e.currentTarget.style.color = "hsl(215 12% 48%)"}>
                 <Download size={14} /> Resume
               </MagneticBtn>
             </div>
 
-            {/* Socials */}
             <div className="flex items-center gap-5"
               style={{ opacity: loaded ? 1 : 0, transition: "opacity 0.7s ease 1.7s" }}>
               {[
@@ -359,12 +341,10 @@ export const HeroSection = () => {
             </div>
           </div>
 
-          {/* ── RIGHT ── */}
           <div className="hidden lg:flex flex-col gap-4"
             style={{ opacity: loaded ? 1 : 0, transform: loaded ? "translateY(0)" : "translateY(30px)", transition: "opacity 0.9s ease 0.6s, transform 0.9s ease 0.6s" }}>
             <TerminalWindow />
 
-            {/* Stat pills */}
             <div className="grid grid-cols-3 gap-2.5">
               {[
                 { n: "600k+", l: "Records/run" },
@@ -384,7 +364,6 @@ export const HeroSection = () => {
               ))}
             </div>
 
-            {/* Code rain */}
             <div className="rounded-xl overflow-hidden"
               style={{ height: "110px", background: "hsl(224 20% 3%)", border: "1px solid hsl(224 15% 14%)", position: "relative" }}>
               <CodeRain />
@@ -397,7 +376,6 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" style={{ opacity: 0.3 }}>
         <div className="w-px h-14" style={{ background: "linear-gradient(to bottom, transparent, #60a5fa)" }} />
         <span className="text-[0.58rem] tracking-[0.22em]" style={{ color: "#475569", fontFamily: "'JetBrains Mono', monospace" }}>SCROLL</span>
