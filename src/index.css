@@ -9,169 +9,129 @@
   --color-primary: hsl(var(--primary));
   --color-primary-foreground: hsl(var(--primary-foreground));
   --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
   --color-secondary: hsl(var(--secondary));
   --color-input: hsl(var(--input));
 
-  --animate-fade-up: fade-up 0.6s ease-out forwards;
-  --animate-fade-up-delay-1: fade-up 0.6s ease-out 0.1s forwards;
-  --animate-fade-up-delay-2: fade-up 0.6s ease-out 0.2s forwards;
-  --animate-fade-up-delay-3: fade-up 0.6s ease-out 0.35s forwards;
-  --animate-fade-up-delay-4: fade-up 0.6s ease-out 0.5s forwards;
-  --animate-blink: blink 1s step-end infinite;
-  --animate-shimmer: shimmer 2.5s linear infinite;
-
   @keyframes fade-up {
-    from {
-      opacity: 0;
-      transform: translateY(16px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
   @keyframes blink {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+    50%       { opacity: 0; }
   }
 
-  @keyframes shimmer {
-    0% { background-position: -200% center; }
-    100% { background-position: 200% center; }
+  @keyframes slide-in-left {
+    from { opacity: 0; transform: translateX(-12px); }
+    to   { opacity: 1; transform: translateX(0); }
   }
 }
 
 @layer base {
   :root {
     --background: 0 0% 4%;
-    --foreground: 0 0% 95%;
+    --foreground: 0 0% 94%;
 
-    --card: 0 0% 7%;
+    --card: 0 0% 6.5%;
     --card-foreground: 0 0% 90%;
 
-    --muted: 0 0% 10%;
-    --muted-foreground: 0 0% 50%;
+    --muted: 0 0% 9%;
+    --muted-foreground: 0 0% 48%;
 
-    --primary: 142 70% 55%;
+    --primary: 153 60% 53%;
     --primary-foreground: 0 0% 4%;
 
-    --secondary: 0 0% 10%;
-    --border: 0 0% 14%;
-    --input: 0 0% 12%;
+    --secondary: 0 0% 8%;
+    --border: 0 0% 12%;
+    --input: 0 0% 10%;
   }
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    line-height: 1.6;
-    cursor: default;
+    line-height: 1.65;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, hsl(153 60% 53% / 0.06), transparent),
+      linear-gradient(hsl(var(--border)) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px);
+    background-size: 100% 100%, 60px 60px, 60px 60px;
+    background-attachment: fixed;
   }
 
   ::selection {
-    background: hsl(var(--primary) / 0.25);
+    background: hsl(var(--primary) / 0.2);
     color: hsl(var(--foreground));
   }
 
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-  ::-webkit-scrollbar-track {
-    background: hsl(var(--background));
-  }
-  ::-webkit-scrollbar-thumb {
-    background: hsl(var(--border));
-    border-radius: 3px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--primary) / 0.5);
-  }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: hsl(var(--background)); }
+  ::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: hsl(var(--primary) / 0.5); }
+
+  a { text-decoration: none; color: inherit; }
 }
 
 @utility container {
   margin-inline: auto;
   padding-inline: 1.5rem;
-
-  @media (width >= 640px) { max-width: 640px; }
-  @media (width >= 768px) { max-width: 768px; }
+  @media (width >= 640px)  { max-width: 640px; }
+  @media (width >= 768px)  { max-width: 768px; }
   @media (width >= 1024px) { max-width: 1024px; }
-  @media (width >= 1280px) { max-width: 1180px; }
+  @media (width >= 1280px) { max-width: 1160px; }
+}
+
+@utility section-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: monospace;
+  color: hsl(var(--primary));
 }
 
 @utility section-heading {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
   font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
 }
 
 @utility tag {
   display: inline-flex;
   align-items: center;
-  padding: 0.2rem 0.65rem;
+  padding: 0.18rem 0.6rem;
   border-radius: 9999px;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.02em;
-  background: hsl(var(--primary) / 0.1);
+  background: hsl(var(--primary) / 0.08);
   color: hsl(var(--primary));
-  border: 1px solid hsl(var(--primary) / 0.2);
+  border: 1px solid hsl(var(--primary) / 0.18);
+  transition: background 0.15s;
 }
 
-@utility btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.6rem 1.4rem;
-  border-radius: 0.5rem;
-  background: hsl(var(--primary));
-  color: hsl(var(--primary-foreground));
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
-  cursor: pointer;
-  border: none;
-  text-decoration: none;
-}
-
-@utility btn-primary:hover {
-  opacity: 0.88;
-  transform: translateY(-1px);
-}
-
-@utility btn-outline {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.6rem 1.4rem;
-  border-radius: 0.5rem;
-  background: transparent;
-  color: hsl(var(--foreground));
-  font-weight: 500;
-  font-size: 0.9rem;
+@utility card {
+  background: hsl(var(--card));
   border: 1px solid hsl(var(--border));
-  transition: all 0.2s ease;
-  cursor: pointer;
-  text-decoration: none;
+  border-radius: 0.875rem;
+  transition: border-color 0.2s ease;
 }
 
-@utility btn-outline:hover {
-  border-color: hsl(var(--primary) / 0.5);
-  color: hsl(var(--primary));
-  background: hsl(var(--primary) / 0.05);
+@utility card-hover {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.875rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 #root {

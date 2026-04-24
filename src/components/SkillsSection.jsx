@@ -1,4 +1,4 @@
-const skillGroups = [
+const groups = [
   {
     label: "Languages",
     skills: ["Python", "JavaScript (ES6+)", "TypeScript", "Java", "C", "SQL"],
@@ -9,7 +9,7 @@ const skillGroups = [
   },
   {
     label: "Databases & Caching",
-    skills: ["PostgreSQL", "MongoDB", "Redis", "Pinecone (Vector DB)"],
+    skills: ["PostgreSQL", "MongoDB", "Redis", "Pinecone"],
   },
   {
     label: "Frontend",
@@ -25,32 +25,35 @@ const skillGroups = [
   },
 ];
 
+const concepts = ["Data Structures & Algorithms", "System Design", "OOP", "Distributed Systems", "Agile"];
+
 export const SkillsSection = () => {
   return (
-    <section id="skills" className="py-28 px-4">
+    <section id="skills" className="py-32 px-4">
       <div className="container max-w-4xl">
-        <p className="text-[hsl(var(--primary))] text-sm font-mono mb-3">Skills</p>
+
+        <p className="section-label mb-4">Skills</p>
         <h2 className="section-heading mb-3">Tech stack</h2>
-        <p className="text-[hsl(var(--muted-foreground))] mb-12 max-w-xl">
-          Tools I use day-to-day — not a bingo card, just what I actually know.
+        <p className="text-[hsl(var(--muted-foreground))] text-[1.05rem] mb-12 max-w-lg">
+          What I actually use — not a keyword-stuffed list.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {skillGroups.map((group) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+          {groups.map((g) => (
             <div
-              key={group.label}
-              className="p-5 rounded-xl border border-[hsl(var(--border))] bg-[hsl(var(--card))] hover:border-[hsl(var(--primary)/0.25)] transition-colors duration-200"
+              key={g.label}
+              className="card-hover p-5 hover:border-[hsl(var(--primary)/0.25)] group"
             >
-              <h3 className="text-xs font-semibold text-[hsl(var(--primary))] uppercase tracking-widest mb-4 font-mono">
-                {group.label}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {group.skills.map((skill) => (
+              <p className="text-[0.68rem] font-semibold uppercase tracking-widest text-[hsl(var(--primary))] font-mono mb-3.5">
+                {g.label}
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {g.skills.map((s) => (
                   <span
-                    key={skill}
-                    className="text-sm px-2.5 py-1 rounded-md bg-[hsl(var(--muted))] text-[hsl(var(--foreground)/0.8)] border border-[hsl(var(--border))] hover:border-[hsl(var(--primary)/0.3)] hover:text-[hsl(var(--foreground))] transition-colors duration-150"
+                    key={s}
+                    className="text-xs px-2.5 py-1 rounded-md bg-[hsl(var(--muted))] text-[hsl(var(--foreground)/0.75)] border border-[hsl(var(--border))] hover:border-[hsl(var(--primary)/0.3)] hover:text-[hsl(var(--foreground))] transition-all duration-150 cursor-default"
                   >
-                    {skill}
+                    {s}
                   </span>
                 ))}
               </div>
@@ -58,16 +61,16 @@ export const SkillsSection = () => {
           ))}
         </div>
 
-        {/* Concepts row */}
-        <div className="mt-5 p-5 rounded-xl border border-[hsl(var(--border))] bg-[hsl(var(--card))]">
-          <h3 className="text-xs font-semibold text-[hsl(var(--primary))] uppercase tracking-widest mb-4 font-mono">
+        {/* Concepts */}
+        <div className="card p-5">
+          <p className="text-[0.68rem] font-semibold uppercase tracking-widest text-[hsl(var(--primary))] font-mono mb-3.5">
             Concepts
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {["Data Structures & Algorithms", "System Design", "OOP", "Distributed Systems", "Agile"].map((c) => (
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            {concepts.map((c) => (
               <span
                 key={c}
-                className="text-sm px-2.5 py-1 rounded-md bg-[hsl(var(--muted))] text-[hsl(var(--foreground)/0.8)] border border-[hsl(var(--border))] hover:border-[hsl(var(--primary)/0.3)] hover:text-[hsl(var(--foreground))] transition-colors duration-150"
+                className="text-xs px-2.5 py-1 rounded-md bg-[hsl(var(--muted))] text-[hsl(var(--foreground)/0.75)] border border-[hsl(var(--border))] hover:border-[hsl(var(--primary)/0.3)] hover:text-[hsl(var(--foreground))] transition-all duration-150 cursor-default"
               >
                 {c}
               </span>
