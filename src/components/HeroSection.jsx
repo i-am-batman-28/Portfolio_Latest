@@ -6,31 +6,41 @@ const ROLES = ["Backend Engineer", "AI Systems Builder", "Full-Stack Developer",
 
 /* ── Letter-by-letter animated word ── */
 const AnimWord = ({ word, delay = 0, color, gradient }) => {
-  const letters = word.split("");
+  const parts = word.split(/(\s+)/);
+  let letterIdx = 0;
   return (
-    <span style={{ display: "inline-block" }}>
-      {letters.map((ch, i) => (
-        <span
-          key={i}
-          style={{
-            display: "inline-block",
-            animationName: "letter-in",
-            animationDuration: "0.5s",
-            animationTimingFunction: "cubic-bezier(0.16,1,0.3,1)",
-            animationDelay: `${delay + i * 0.04}s`,
-            animationFillMode: "both",
-            ...(gradient ? {
-              background: gradient,
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              backgroundSize: "200% 200%",
-            } : { color }),
-          }}
-        >
-          {ch === " " ? " " : ch}
-        </span>
-      ))}
+    <span style={{ display: "inline" }}>
+      {parts.map((chunk, pi) => {
+        if (/^\s+$/.test(chunk)) {
+          return <span key={pi} style={{ display: "inline-block", width: "0.32em" }} />;
+        }
+        return (
+          <span key={pi} style={{ display: "inline-block", whiteSpace: "nowrap" }}>
+            {chunk.split("").map((ch, ci) => {
+              const idx = letterIdx++;
+              return (
+                <span key={ci} style={{
+                  display: "inline-block",
+                  animationName: "letter-in",
+                  animationDuration: "0.5s",
+                  animationTimingFunction: "cubic-bezier(0.16,1,0.3,1)",
+                  animationDelay: `${delay + idx * 0.04}s`,
+                  animationFillMode: "both",
+                  ...(gradient ? {
+                    background: gradient,
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    backgroundSize: "200% 200%",
+                  } : { color }),
+                }}>
+                  {ch}
+                </span>
+              );
+            })}
+          </span>
+        );
+      })}
     </span>
   );
 };
